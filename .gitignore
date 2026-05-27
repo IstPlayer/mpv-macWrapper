@@ -1,0 +1,9 @@
+mpv.app
+icon/mpv.icns
+icon/mpv.svg
+icon/mpv-icon-128.png
+icon/mpv-icon-1024.png
+icon/mpv-icon-2048.png
+__pycache__/
+*.pyc
+.DS_Store
