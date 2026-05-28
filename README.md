@@ -17,30 +17,30 @@ Homebrew's mpv is a command-line binary. It can't:
 - Appear in "Open With" menus
 - Show up in Launchpad
 
-This project wraps it in a ~130 KB `.app` bundle that solves all of the above.
+This project provides a pre-built, ready-to-use `.app` bundle (~1.2 MB) that solves all of the above.
 
 ## Quick Start
+
+Download `mpv.dmg` from the [latest release](https://github.com/IstPlayer/mpv-mac-app/releases/latest),
+open it, and drag `mpv.app` into `/Applications/`.
+
+> **Planned:** Homebrew Cask (`brew install --cask mpv-mac-wrapper`). See [TODO.md](TODO.md).
+
+Or build from source:
 
 ```bash
 git clone https://github.com/IstPlayer/mpv-mac-app.git
 cd mpv-mac-app
-make install
+make dmg
 ```
 
-> **macOS Gatekeeper:** the app is unsigned. Right-click → **Open** the first time you launch it, or run
-> `make install` (which strips the quarantine flag automatically).
-
-Then refresh the icon cache:
-
-```bash
-killall Dock
-```
+> **macOS Gatekeeper:** the app is unsigned. Right-click → **Open** the first time you launch it.
 
 ## Usage
 
 | Action | Command / Gesture |
 |---|---|
-| Launch (idle window) | Double-click `/Applications/mpv.app` |
+| Launch (idle window) | Double-click `mpv.app` |
 | Open a file | `open -a mpv video.mkv` |
 | Drag & drop | Drop a video onto the mpv window or Dock icon |
 | Finder right-click | Right-click a video → Open With → mpv |
@@ -67,34 +67,6 @@ The launcher locates `mpv` at runtime by checking, in order:
 
 **mpv updates require zero maintenance.** The launcher always resolves to the current binary on `$PATH`.
 
-### Custom mpv path
-
-```bash
-# Use a non-standard mpv installation
-MPV_PATH=/opt/custom/bin/mpv make install
-```
-
-Or set the environment variable before launching the app itself.
-
-## Build
-
-```bash
-make          # Build mpv.app (icon is pre-generated)
-make test     # Build + smoke tests
-make clean    # Remove build artifacts
-make icon     # Regenerate the icon from upstream PNG
-```
-
-## Dependencies
-
-| Dependency | Why | Install |
-|---|---|---|
-| mpv | The player itself | `brew install mpv` |
-| clang | Compile the launcher | `xcode-select --install` |
-| sips / iconutil | Icon packaging | Built into macOS |
-
-> Building the icon from scratch (optional — it's pre-generated) requires Python 3 + Pillow.
-
 ## Configuration
 
 All mpv behaviour is controlled by your `~/.config/mpv/`:
@@ -104,6 +76,24 @@ All mpv behaviour is controlled by your `~/.config/mpv/`:
 - `script-opts/` — script options
 
 The launcher itself has zero configuration.
+
+## Development
+
+The `.app` is committed pre-built. To rebuild (e.g. after modifying the launcher):
+
+```bash
+make          # Build mpv.app
+make test     # Build + smoke tests
+make dmg      # Build + create .dmg disk image
+make clean    # Remove build artifacts
+make icon     # Regenerate the icon from upstream
+```
+
+### Custom mpv path
+
+```bash
+MPV_PATH=/opt/custom/bin/mpv make
+```
 
 ## FAQ
 
@@ -125,12 +115,6 @@ mpv_path=/opt/homebrew/bin/mpv
 
 ```bash
 killall Dock
-```
-
-### How do I uninstall?
-
-```bash
-make uninstall
 ```
 
 ## License

@@ -1,4 +1,3 @@
-mpv.app
 icon/mpv-icon-1024.png
 icon/mpv-icon-2048.png
 icon/mpv.svg
@@ -6,3 +5,5 @@ __pycache__/
 *.pyc
 .DS_Store
 icon/mpv-icon-128.png
+mpv.app
+mpv-*.dmg

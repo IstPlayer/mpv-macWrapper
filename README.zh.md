@@ -17,29 +17,31 @@ Homebrew 安装的 mpv 是命令行工具，无法：
 - 右键视频文件 → 打开方式 → mpv
 - 从 Launchpad 启动
 
-本项目将其包装为约 130 KB 的 `.app` bundle，解决以上所有问题。
+本项目提供预构建、开箱即用的 `.app` bundle（约 1.2 MB），解决以上所有问题。
 
 ## 快速开始
+
+从 [Releases](https://github.com/IstPlayer/mpv-mac-app/releases/latest) 下载 `mpv.dmg`，
+双击打开，将 `mpv.app` 拖入 `/Applications/`。
+
+> **计划中：** Homebrew Cask（`brew install --cask mpv-mac-wrapper`）。见 [TODO.md](TODO.md)。
+
+或从源码构建：
 
 ```bash
 git clone https://github.com/IstPlayer/mpv-mac-app.git
 cd mpv-mac-app
-make install
+make         # 构建 mpv.app
+make install # 或构建 + 安装到 /Applications/
 ```
 
-> **macOS Gatekeeper：** 应用未签名，首次启动需**右键 → 打开**，或使用 `make install`（自动移除隔离标记）。
-
-刷新图标缓存：
-
-```bash
-killall Dock
-```
+> **macOS Gatekeeper：** 应用未签名，首次启动需**右键 → 打开**。
 
 ## 使用
 
 | 操作 | 命令 / 手势 |
 |---|---|
-| 启动（空白窗口） | 双击 `/Applications/mpv.app` |
+| 启动（空白窗口） | 双击 `mpv.app` |
 | 打开文件 | `open -a mpv video.mkv` |
 | 拖放 | 将视频拖到 mpv 窗口或 Dock 图标 |
 | Finder 右键 | 右键视频 → 打开方式 → mpv |
@@ -66,34 +68,6 @@ mpv.app/
 
 **mpv 更新后无需任何操作** —— 启动器运行时自动定位当前 mpv 二进制。
 
-### 自定义 mpv 路径
-
-```bash
-# 使用非标准位置的 mpv
-MPV_PATH=/opt/custom/bin/mpv make install
-```
-
-也可在启动前设置环境变量。
-
-## 构建
-
-```bash
-make          # 构建 mpv.app（图标已预生成）
-make test     # 构建 + 冒烟测试
-make clean    # 清理构建产物
-make icon     # 重新从上游 PNG 生成图标
-```
-
-## 依赖
-
-| 依赖 | 用途 | 安装 |
-|---|---|---|
-| mpv | 播放器本体 | `brew install mpv` |
-| clang | 编译启动器 | `xcode-select --install` |
-| sips / iconutil | 图标打包 | macOS 内置 |
-
-> 如需重新生成图标（可选，已预生成），额外需要 Python 3 + Pillow。
-
 ## 配置
 
 mpv 行为完全由 `~/.config/mpv/` 控制：
@@ -103,6 +77,24 @@ mpv 行为完全由 `~/.config/mpv/` 控制：
 - `script-opts/` — 脚本配置
 
 启动器本身零配置。
+
+## 开发
+
+`.app` 已预构建并提交。如需重新构建（例如修改启动器后）：
+
+```bash
+make          # 构建 mpv.app
+make test     # 构建 + 冒烟测试
+make dmg      # 构建 + 创建 .dmg 磁盘映像
+make clean    # 清理构建产物
+make icon     # 重新生成图标
+```
+
+### 自定义 mpv 路径
+
+```bash
+MPV_PATH=/opt/custom/bin/mpv make
+```
 
 ## FAQ
 
@@ -124,12 +116,6 @@ mpv_path=/opt/homebrew/bin/mpv
 
 ```bash
 killall Dock
-```
-
-### 如何卸载？
-
-```bash
-make uninstall
 ```
 
 ## License

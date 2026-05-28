@@ -74,10 +74,31 @@ test: build
 		pgrep -q $(APP_NAME) && echo "OK" && pkill $(APP_NAME) || echo "FAIL"
 	@rm -f /tmp/_mpv_test.mkv
 
+# ── DMG ─────────────────────────────────────────────────
+
+DMG_FILE := $(APP_NAME)-$(MPV_VERSION).dmg
+DMG_ROOT := /tmp/$(APP_NAME)-dmg
+
+.PHONY: dmg
+dmg: build
+	@echo "📀 Creating $(DMG_FILE)..."
+	@rm -rf $(DMG_ROOT) $(DMG_FILE)
+	@mkdir -p $(DMG_ROOT)
+	@cp -R $(BUNDLE) $(DMG_ROOT)/
+	@ln -s /Applications $(DMG_ROOT)/Applications
+	@hdiutil create -volname $(APP_NAME) \
+		-srcfolder $(DMG_ROOT) \
+		-format UDZO \
+		-fs HFS+ \
+		$(DMG_FILE) >/dev/null 2>&1
+	@rm -rf $(DMG_ROOT)
+	@echo "✅ $(DMG_FILE)  ($$(du -h $(DMG_FILE) | cut -f1))"
+
 # ── Clean ────────────────────────────────────────────────
 
 clean:
 	rm -rf $(BUNDLE)
+	rm -f $(APP_NAME)-*.dmg
 	rm -rf icon/mpv-icon-1024.png icon/mpv-icon-2048.png icon/mpv.svg
 
 # ── Help ────────────────────────────────────────────────
@@ -87,6 +108,7 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  make          Build the .app bundle"
+	@echo "  make dmg      Build + create .dmg disk image"
 	@echo "  make install  Install to /Applications/"
 	@echo "  make uninstall  Remove from /Applications/"
 	@echo "  make test     Build and run smoke tests"
