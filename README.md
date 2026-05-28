@@ -1,4 +1,4 @@
-# mpv-macWrapper
+# mpv-macWrapper v1.0.0
 
 > Wrap your [Homebrew](https://brew.sh/) (or otherwise installed) **mpv CLI** as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
 
@@ -19,7 +19,7 @@
 - Appear in "Open With" menus
 - Show up in Launchpad
 
-This project builds a ~1.2 MB `.app` bundle that solves all of the above.
+This project builds a ~1.2 MB `.app` bundle (wrapper v1.0.0, tested with mpv v0.41.0) that solves all of the above.
 
 ## Quick Start
 

@@ -1,5 +1,5 @@
-# mpv-macWrapper — macOS .app bundle for Homebrew mpv
-# ==================================================
+# mpv-macWrapper v1.0.0 — macOS .app bundle for Homebrew mpv
+# ===============================================================
 
 APP_NAME      := mpv
 BUNDLE        := $(APP_NAME).app
@@ -83,7 +83,7 @@ release: build
 	@mkdir -p $(DMG_ROOT)
 	@cp -R $(BUNDLE) $(DMG_ROOT)/
 	@ln -s /Applications $(DMG_ROOT)/Applications
-	@hdiutil create -volname $(APP_NAME) \
+	@hdiutil create -volname "$(APP_NAME) v$(VERSION)" \
 		-srcfolder $(DMG_ROOT) \
 		-format UDZO \
 		-fs HFS+ \
@@ -101,7 +101,7 @@ clean:
 # ── Help ────────────────────────────────────────────────
 
 help:
-	@echo "mpv-macWrapper — macOS .app bundle for Homebrew mpv"
+	@echo "mpv-macWrapper v$(VERSION) — macOS .app bundle for Homebrew mpv"
 	@echo ""
 	@echo "Targets:"
 	@echo "  make          Build the .app bundle"

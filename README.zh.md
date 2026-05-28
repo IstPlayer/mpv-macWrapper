@@ -1,4 +1,4 @@
-# mpv-macWrapper
+# mpv-macWrapper v1.0.0
 
 > 将 [Homebrew](https://brew.sh/) 或其他工具安装的 **mpv CLI** 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
 
@@ -18,7 +18,7 @@
 - 右键视频文件 → 打开方式 → mpv
 - 从 Launchpad 启动
 
-本项目构建约 1.2 MB 的 `.app` bundle，解决以上所有问题。
+本项目构建约 1.2 MB 的 `.app` bundle（wrapper v1.0.0，mpv v0.41.0 测试通过），解决以上所有问题。
 
 ## 快速开始
 
