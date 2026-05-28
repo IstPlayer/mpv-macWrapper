@@ -70,10 +70,19 @@ test: build
 		pgrep -q $(APP_NAME) && echo "OK" && pkill $(APP_NAME) || echo "FAIL"
 	@rm -f /tmp/_mpv_test.mkv
 
+# ── Release ─────────────────────────────────────────────
+
+.PHONY: release
+release: build
+	@echo "📦 Creating $(BUNDLE).zip..."
+	@rm -f $(BUNDLE).zip
+	@ditto -c -k --keepParent $(BUNDLE) $(BUNDLE).zip
+	@echo "✅ $(BUNDLE).zip  ($$(du -h $(BUNDLE).zip | cut -f1))"
+
 # ── Clean ────────────────────────────────────────────────
 
 clean:
-	rm -rf $(BUNDLE)
+	rm -rf $(BUNDLE) $(BUNDLE).zip
 	rm -rf icon/mpv-icon-1024.png icon/mpv-icon-2048.png icon/mpv.svg
 
 # ── Help ────────────────────────────────────────────────
@@ -83,6 +92,7 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  make          Build the .app bundle"
+	@echo "  make release  Build + create .app.zip for distribution"
 	@echo "  make install  Install to /Applications/"
 	@echo "  make uninstall  Remove from /Applications/"
 	@echo "  make test     Build and run smoke tests"
