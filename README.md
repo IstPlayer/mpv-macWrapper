@@ -1,4 +1,4 @@
-# mpv-mac-app
+# mpv-macWrapper
 
 > Wrap your Homebrew-installed mpv as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
 
@@ -21,16 +21,16 @@ This project provides a pre-built, ready-to-use `.app` bundle (~1.2 MB) that sol
 
 ## Quick Start
 
-Download `mpv.dmg` from the [latest release](https://github.com/IstPlayer/mpv-mac-app/releases/latest),
+Download `mpv.dmg` from the [latest release](https://github.com/IstPlayer/mpv-macWrapper/releases/latest),
 open it, and drag `mpv.app` into `/Applications/`.
 
-> **Planned:** Homebrew Cask (`brew install --cask mpv-mac-wrapper`). See [TODO.md](TODO.md).
+> **Planned:** Homebrew Cask (`brew install --cask mpv-macWrapper`). See [TODO.md](TODO.md).
 
 Or build from source:
 
 ```bash
-git clone https://github.com/IstPlayer/mpv-mac-app.git
-cd mpv-mac-app
+git clone https://github.com/IstPlayer/mpv-macWrapper.git
+cd mpv-macWrapper
 make dmg
 ```
 

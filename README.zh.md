@@ -1,4 +1,4 @@
-# mpv-mac-app
+# mpv-macWrapper
 
 > 将 Homebrew 安装的 mpv 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
 
@@ -21,16 +21,16 @@ Homebrew 安装的 mpv 是命令行工具，无法：
 
 ## 快速开始
 
-从 [Releases](https://github.com/IstPlayer/mpv-mac-app/releases/latest) 下载 `mpv.dmg`，
+从 [Releases](https://github.com/IstPlayer/mpv-macWrapper/releases/latest) 下载 `mpv.dmg`，
 双击打开，将 `mpv.app` 拖入 `/Applications/`。
 
-> **计划中：** Homebrew Cask（`brew install --cask mpv-mac-wrapper`）。见 [TODO.md](TODO.md)。
+> **计划中：** Homebrew Cask（`brew install --cask mpv-macWrapper`）。见 [TODO.md](TODO.md)。
 
 或从源码构建：
 
 ```bash
-git clone https://github.com/IstPlayer/mpv-mac-app.git
-cd mpv-mac-app
+git clone https://github.com/IstPlayer/mpv-macWrapper.git
+cd mpv-macWrapper
 make         # 构建 mpv.app
 make install # 或构建 + 安装到 /Applications/
 ```

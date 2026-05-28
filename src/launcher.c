@@ -1,5 +1,5 @@
 /*
- * mpv-mac-app — macOS .app bundle launcher for mpv
+ * mpv-macWrapper — macOS .app bundle launcher for mpv
  *
  * Locates mpv via the MPV_PATH environment variable, falling back to
  * common Homebrew / system paths.  When invoked with arguments they are

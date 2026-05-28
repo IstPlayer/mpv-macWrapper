@@ -1,4 +1,4 @@
-# mpv-mac-app — macOS .app bundle for Homebrew mpv
+# mpv-macWrapper — macOS .app bundle for Homebrew mpv
 # ==================================================
 
 APP_NAME      := mpv
@@ -104,7 +104,7 @@ clean:
 # ── Help ────────────────────────────────────────────────
 
 help:
-	@echo "mpv-mac-app — macOS .app bundle for Homebrew mpv"
+	@echo "mpv-macWrapper — macOS .app bundle for Homebrew mpv"
 	@echo ""
 	@echo "Targets:"
 	@echo "  make          Build the .app bundle"
