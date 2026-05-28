@@ -11,6 +11,7 @@ CFLAGS        := -O2 -mmacosx-version-min=12.0
 # Detect mpv path for test / display (use MPV_PATH override if set)
 MPV_BIN       := $(or $(MPV_PATH),$(shell command -v mpv 2>/dev/null || echo mpv))
 VERSION       := 1.0.0
+MPV_VER       := $(shell $(MPV_BIN) --version 2>/dev/null | head -1 | awk '{print $$2}' || echo unknown)
 
 .PHONY: all build install uninstall clean icon test help
 
@@ -21,7 +22,7 @@ all: build
 build: $(BUNDLE)
 
 $(BUNDLE): src/launcher.c src/Info.plist icon/mpv.icns
-	@echo "🔨 Building $(BUNDLE) v$(VERSION)..."
+	@echo "🔨 Building $(BUNDLE) v$(VERSION)  (mpv $(MPV_VER))..."
 	@rm -rf $(BUNDLE)
 	@mkdir -p $(BUNDLE)/Contents/MacOS
 	@mkdir -p $(BUNDLE)/Contents/Resources
