@@ -6,7 +6,7 @@
   <a href="README.md">English</a>
   &nbsp;·&nbsp;
   <img src="https://img.shields.io/badge/platform-macOS%2012%2B-blue" alt="platform">
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
+  <img src="https://img.shields.io/badge/license-GPLv2%2B-green" alt="license">
 </p>
 
 ## 为什么需要？
@@ -120,4 +120,9 @@ killall Dock
 
 ## License
 
-MIT © 2026 IstPlayer
+GPLv2+ © 2026 IstPlayer。
+
+本程序为自由软件；您可依据自由软件基金会发布的 GNU 通用公共许可证条款
+对其再分发和/或修改；适用许可证第 2 版，或（由您选择）任何更新版本。
+
+详见 [LICENSE](LICENSE)。
