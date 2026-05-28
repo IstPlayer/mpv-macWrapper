@@ -8,9 +8,9 @@ INSTALL_DIR   := /Applications
 CC            := clang
 CFLAGS        := -O2 -mmacosx-version-min=12.0
 
-# Detect mpv version for Info.plist (use MPV_PATH override if set)
+# Detect mpv path for test / display (use MPV_PATH override if set)
 MPV_BIN       := $(or $(MPV_PATH),$(shell command -v mpv 2>/dev/null || echo mpv))
-MPV_VERSION   := $(shell $(MPV_BIN) --version 2>/dev/null | head -1 | awk '{print $$2}' || echo "0.0.0")
+VERSION       := 1.0.0
 
 .PHONY: all build install uninstall clean icon test help
 
@@ -21,16 +21,16 @@ all: build
 build: $(BUNDLE)
 
 $(BUNDLE): src/launcher.c src/Info.plist icon/mpv.icns
-	@echo "🔨 Building $(BUNDLE) for mpv $(MPV_VERSION)..."
+	@echo "🔨 Building $(BUNDLE) v$(VERSION)..."
 	@rm -rf $(BUNDLE)
 	@mkdir -p $(BUNDLE)/Contents/MacOS
 	@mkdir -p $(BUNDLE)/Contents/Resources
 	$(CC) $(CFLAGS) -o $(BUNDLE)/Contents/MacOS/$(APP_NAME) src/launcher.c
 	strip $(BUNDLE)/Contents/MacOS/$(APP_NAME)
 	cp icon/mpv.icns $(BUNDLE)/Contents/Resources/
-	sed 's/__VERSION__/$(MPV_VERSION)/' src/Info.plist > $(BUNDLE)/Contents/Info.plist
+	sed 's/__VERSION__/$(VERSION)/' src/Info.plist > $(BUNDLE)/Contents/Info.plist
 	plutil -lint $(BUNDLE)/Contents/Info.plist
-	@echo "✅ $(BUNDLE) built ($(MPV_VERSION))"
+	@echo "✅ $(BUNDLE) built (v$(VERSION))"
 
 # ── Icon (pre-generated; regenerate only on demand) ─────
 
@@ -72,7 +72,7 @@ test: build
 
 # ── Release ─────────────────────────────────────────────
 
-DMG_FILE := $(APP_NAME)-$(MPV_VERSION).dmg
+DMG_FILE := $(APP_NAME)-$(VERSION).dmg
 DMG_ROOT := /tmp/$(APP_NAME)-dmg
 
 .PHONY: release
