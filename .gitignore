@@ -6,4 +6,4 @@ __pycache__/
 .DS_Store
 icon/mpv-icon-128.png
 mpv.app
-mpv.app.zip
+mpv-*.dmg

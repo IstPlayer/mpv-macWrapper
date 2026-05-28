@@ -14,10 +14,13 @@ jobs:
       - name: Build and package
         run: make release
 
+      - name: Rename DMG for release
+        run: mv mpv-*.dmg mpv.dmg
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: mpv.app.zip
+          files: mpv.dmg
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
