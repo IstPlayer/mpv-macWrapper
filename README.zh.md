@@ -21,19 +21,13 @@ Homebrew 安装的 mpv 是命令行工具，无法：
 
 ## 快速开始
 
-从 [Releases](https://github.com/IstPlayer/mpv-macWrapper/releases/latest) 下载 `mpv.dmg`，
-双击打开，将 `mpv.app` 拖入 `/Applications/`。
-
-> **计划中：** Homebrew Cask（`brew install --cask mpv-macWrapper`）。见 [TODO.md](TODO.md)。
-
-或从源码构建：
-
 ```bash
 git clone https://github.com/IstPlayer/mpv-macWrapper.git
 cd mpv-macWrapper
-make         # 构建 mpv.app
-make install # 或构建 + 安装到 /Applications/
+make install
 ```
+
+> **计划中：** Homebrew Formula（`brew install mpv-macWrapper`）。见 [TODO.md](TODO.md)。
 
 > **macOS Gatekeeper：** 应用未签名，首次启动需**右键 → 打开**。
 
@@ -85,7 +79,6 @@ mpv 行为完全由 `~/.config/mpv/` 控制：
 ```bash
 make          # 构建 mpv.app
 make test     # 构建 + 冒烟测试
-make dmg      # 构建 + 创建 .dmg 磁盘映像
 make clean    # 清理构建产物
 make icon     # 重新生成图标
 ```

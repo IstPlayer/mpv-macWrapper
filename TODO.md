@@ -1,8 +1,8 @@
 # TODO
 
-- [ ] Submit to [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) so users can install via:
+- [ ] Submit to [Homebrew core](https://github.com/Homebrew/homebrew-core) as a Formula so users can install via:
   ```bash
-  brew install --cask mpv-macWrapper
+  brew install mpv-macWrapper
   ```
-  Requires: GitHub Releases with `.dmg` assets, a cask definition in the
-  `homebrew-cask` tap referencing this repo's release URL.
+  The Formula builds from source (`make install`), which fits the target audience
+  (Homebrew + mpv users are comfortable with compilation).

@@ -21,18 +21,13 @@ This project provides a pre-built, ready-to-use `.app` bundle (~1.2 MB) that sol
 
 ## Quick Start
 
-Download `mpv.dmg` from the [latest release](https://github.com/IstPlayer/mpv-macWrapper/releases/latest),
-open it, and drag `mpv.app` into `/Applications/`.
-
-> **Planned:** Homebrew Cask (`brew install --cask mpv-macWrapper`). See [TODO.md](TODO.md).
-
-Or build from source:
-
 ```bash
 git clone https://github.com/IstPlayer/mpv-macWrapper.git
 cd mpv-macWrapper
-make dmg
+make install
 ```
+
+> **Planned:** Homebrew Formula (`brew install mpv-macWrapper`). See [TODO.md](TODO.md).
 
 > **macOS Gatekeeper:** the app is unsigned. Right-click → **Open** the first time you launch it.
 
@@ -84,7 +79,6 @@ The `.app` is committed pre-built. To rebuild (e.g. after modifying the launcher
 ```bash
 make          # Build mpv.app
 make test     # Build + smoke tests
-make dmg      # Build + create .dmg disk image
 make clean    # Remove build artifacts
 make icon     # Regenerate the icon from upstream
 ```
