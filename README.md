@@ -23,6 +23,11 @@ This project builds a ~1.2 MB `.app` bundle (wrapper v1.0.0, tested with mpv v0.
 
 ## Quick Start
 
+[Download the latest DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest),
+open it, and drag `mpv.app` into `/Applications/`.
+
+Or build from source:
+
 ```bash
 git clone https://github.com/IstPlayer/mpv-macWrapper.git
 cd mpv-macWrapper
@@ -124,7 +129,7 @@ make uninstall
 
 ## TODO
 
-- [ ] Submit to [Homebrew core](https://github.com/Homebrew/homebrew-core) as a Formula.
+- [ ] Submit to [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) — `brew install --cask mpv-macWrapper`.
 
 ## License
 

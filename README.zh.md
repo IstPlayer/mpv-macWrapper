@@ -22,6 +22,11 @@
 
 ## 快速开始
 
+[下载最新 DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)，
+双击打开，将 `mpv.app` 拖入 `/Applications/`。
+
+或从源码构建：
+
 ```bash
 git clone https://github.com/IstPlayer/mpv-macWrapper.git
 cd mpv-macWrapper
@@ -119,7 +124,7 @@ make uninstall
 
 ## TODO
 
-- [ ] 提交至 [Homebrew core](https://github.com/Homebrew/homebrew-core) 作为 Formula。
+- [ ] 提交至 [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) — `brew install --cask mpv-macWrapper`。
 
 ## License
 
