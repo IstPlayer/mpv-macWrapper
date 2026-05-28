@@ -1,6 +1,6 @@
 # mpv-macWrapper
 
-> Wrap your Homebrew (or otherwise installed) **mpv CLI** as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
+> Wrap your [Homebrew](https://brew.sh/) (or otherwise installed) **mpv CLI** as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
 
 <p align="center">
   <a href="README.zh.md">中文</a>
@@ -11,7 +11,7 @@
 
 ## Why?
 
-Homebrew and other package managers install mpv as a command-line binary. It can't:
+[Homebrew](https://brew.sh/) and other package managers install mpv as a command-line binary. It can't:
 
 - Launch from Finder with a double-click
 - Stay in the Dock
@@ -28,7 +28,7 @@ cd mpv-macWrapper
 make install
 ```
 
-> **Planned:** Homebrew Formula (`brew install mpv-macWrapper`). See [TODO.md](TODO.md).
+> **Planned:** [Homebrew](https://brew.sh/) Formula (`brew install mpv-macWrapper`). See [TODO.md](TODO.md).
 
 > **macOS Gatekeeper:** the app is unsigned. On first launch, macOS will block it with a
 > _"cannot be opened because it is from an unidentified developer"_ dialog.
@@ -58,8 +58,8 @@ mpv.app/
 The launcher locates `mpv` at runtime by checking, in order:
 
 1. `$MPV_PATH` environment variable
-2. `/opt/homebrew/bin/mpv` (Apple Silicon Homebrew)
-3. `/usr/local/bin/mpv` (Intel Homebrew)
+2. `/opt/homebrew/bin/mpv` (Apple Silicon [Homebrew](https://brew.sh/))
+3. `/usr/local/bin/mpv` (Intel [Homebrew](https://brew.sh/))
 4. `/opt/local/bin/mpv` (MacPorts)
 
 - **With arguments** → passes them through to mpv.
@@ -110,7 +110,7 @@ MPV_PATH=/opt/custom/bin/mpv make
 
 ### Do I need to reinstall after `brew upgrade mpv`?
 
-**No.** The launcher resolves `mpv` at runtime — a Homebrew upgrade is picked up automatically.
+**No.** The launcher resolves `mpv` at runtime — a [Homebrew](https://brew.sh/) upgrade is picked up automatically.
 
 ### thumbfast spams "client script write failed"?
 

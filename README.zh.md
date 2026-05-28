@@ -1,6 +1,6 @@
 # mpv-macWrapper
 
-> 将 Homebrew 或其他工具安装的 **mpv CLI** 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
+> 将 [Homebrew](https://brew.sh/) 或其他工具安装的 **mpv CLI** 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
 
 <p align="center">
   <a href="README.md">English</a>
@@ -11,7 +11,7 @@
 
 ## 为什么需要？
 
-Homebrew 或其他工具安装的 mpv 是命令行工具，无法：
+[Homebrew](https://brew.sh/) 或其他工具安装的 mpv 是命令行工具，无法：
 - 在 Finder 中双击启动
 - 拖到 Dock 固定
 - 右键视频文件 → 打开方式 → mpv
@@ -27,7 +27,7 @@ cd mpv-macWrapper
 make install
 ```
 
-> **计划中：** Homebrew Formula（`brew install mpv-macWrapper`）。见 [TODO.md](TODO.md)。
+> **计划中：** [Homebrew](https://brew.sh/) Formula（`brew install mpv-macWrapper`）。见 [TODO.md](TODO.md)。
 
 > **macOS Gatekeeper：** 应用未签名，首次启动时 macOS 会弹出
 > _"无法打开，因为无法验证开发者"_ 的提示。
@@ -56,8 +56,8 @@ mpv.app/
 启动器按以下顺序查找 `mpv`：
 
 1. `$MPV_PATH` 环境变量
-2. `/opt/homebrew/bin/mpv`（Apple Silicon Homebrew）
-3. `/usr/local/bin/mpv`（Intel Homebrew）
+2. `/opt/homebrew/bin/mpv`（Apple Silicon [Homebrew](https://brew.sh/)）
+3. `/usr/local/bin/mpv`（Intel [Homebrew](https://brew.sh/)）
 4. `/opt/local/bin/mpv`（MacPorts）
 
 - **有参数** → 透传给 mpv
@@ -107,7 +107,7 @@ MPV_PATH=/opt/custom/bin/mpv make
 
 ### mpv 更新后需要重装吗？
 
-**不需要。** 启动器运行时定位 mpv，`brew upgrade mpv` 后自动生效。
+**不需要。** 启动器运行时定位 mpv，`brew upgrade mpv` 后自动生效。（[Homebrew](https://brew.sh/) 升级无需额外操作）
 
 ### thumbfast 持续报 "client script write failed"？
 
