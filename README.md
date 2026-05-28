@@ -11,7 +11,7 @@
 
 ## Why?
 
-[Homebrew](https://brew.sh/) and other package managers install mpv as a command-line binary. It can't:
+[Homebrew](https://brew.sh/) and other package managers install/compile **mpv** as a command-line binary. It can't:
 
 - Launch from Finder with a double-click
 - Stay in the Dock
@@ -28,11 +28,11 @@ cd mpv-macWrapper
 make install
 ```
 
-> **Planned:** [Homebrew](https://brew.sh/) Formula (`brew install mpv-macWrapper`). See [TODO.md](TODO.md).
-
 > **macOS Gatekeeper:** the app is unsigned. On first launch, macOS will block it with a
 > _"cannot be opened because it is from an unidentified developer"_ dialog.
 > **Right-click** (or Control-click) the app in Finder and choose **Open**, then confirm.
+> You may also need to go to **System Settings → Privacy & Security** and scroll down to
+> find the security prompt to allow it manually.
 > Alternatively, `make install` strips the quarantine flag automatically, so Gatekeeper
 > won't prompt on subsequent launches.
 
@@ -110,23 +110,8 @@ MPV_PATH=/opt/custom/bin/mpv make
 
 ### Do I need to reinstall after `brew upgrade mpv`?
 
-**No.** The launcher resolves `mpv` at runtime — a [Homebrew](https://brew.sh/) upgrade is picked up automatically.
-
-### thumbfast spams "client script write failed"?
-
-Make sure `~/.config/mpv/script-opts/thumbfast.conf` uses absolute paths (`~` is not expanded by Lua):
-
-```ini
-socket=/Users/yourname/.cache/mpv/thumbnailSocket
-thumbnail=/Users/yourname/.cache/mpv/thumbnail
-mpv_path=/opt/homebrew/bin/mpv
-```
-
-### The icon hasn't updated?
-
-```bash
-killall Dock
-```
+**No.** The launcher automatically locates **mpv** at runtime following the
+[lookup rules](#how-it-works).
 
 ### How do I uninstall?
 
@@ -137,7 +122,6 @@ make uninstall
 ## TODO
 
 - [ ] Submit to [Homebrew core](https://github.com/Homebrew/homebrew-core) as a Formula.
-      See [TODO.md](TODO.md) for details.
 
 ## License
 
