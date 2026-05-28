@@ -4,7 +4,6 @@
 APP_NAME      := mpv
 BUNDLE        := $(APP_NAME).app
 INSTALL_DIR   := /Applications
-THUMBFAST_SYM := /usr/local/mpv
 
 CC            := clang
 CFLAGS        := -O2 -mmacosx-version-min=12.0
@@ -21,7 +20,7 @@ all: build
 
 build: $(BUNDLE)
 
-$(BUNDLE): src/launcher.c Info.plist icon/mpv.icns
+$(BUNDLE): src/launcher.c src/Info.plist icon/mpv.icns
 	@echo "🔨 Building $(BUNDLE) for mpv $(MPV_VERSION)..."
 	@rm -rf $(BUNDLE)
 	@mkdir -p $(BUNDLE)/Contents/MacOS
@@ -29,7 +28,7 @@ $(BUNDLE): src/launcher.c Info.plist icon/mpv.icns
 	$(CC) $(CFLAGS) -o $(BUNDLE)/Contents/MacOS/$(APP_NAME) src/launcher.c
 	strip $(BUNDLE)/Contents/MacOS/$(APP_NAME)
 	cp icon/mpv.icns $(BUNDLE)/Contents/Resources/
-	sed 's/__VERSION__/$(MPV_VERSION)/' Info.plist > $(BUNDLE)/Contents/Info.plist
+	sed 's/__VERSION__/$(MPV_VERSION)/' src/Info.plist > $(BUNDLE)/Contents/Info.plist
 	plutil -lint $(BUNDLE)/Contents/Info.plist
 	@echo "✅ $(BUNDLE) built ($(MPV_VERSION))"
 
@@ -49,14 +48,11 @@ install: build
 	sudo rm -rf "$(INSTALL_DIR)/$(BUNDLE)"
 	sudo cp -R $(BUNDLE) "$(INSTALL_DIR)/"
 	sudo xattr -dr com.apple.quarantine "$(INSTALL_DIR)/$(BUNDLE)" 2>/dev/null || true
-	sudo mkdir -p /usr/local
-	sudo ln -sf "$(INSTALL_DIR)/$(BUNDLE)/Contents/MacOS/$(APP_NAME)" $(THUMBFAST_SYM)
 	@echo "✅ Installed. Run: killall Dock   (to refresh icon cache)"
 
 uninstall:
 	@echo "🗑  Removing $(INSTALL_DIR)/$(BUNDLE)..."
 	sudo rm -rf "$(INSTALL_DIR)/$(BUNDLE)"
-	sudo rm -f $(THUMBFAST_SYM)
 	@echo "✅ Uninstalled."
 
 # ── Test ────────────────────────────────────────────────

@@ -41,6 +41,23 @@ int main(int argc, char *argv[]) {
             "Set MPV_PATH to your mpv binary, or install:\n"
             "  brew install mpv\n";
         write(STDERR_FILENO, msg, strlen(msg));
+
+        /* Also show a GUI dialog so Finder / Dock launches aren't silent */
+        const char *argv[] = {
+            "/usr/bin/osascript", "-e",
+            "display dialog \"mpv not found.\\n\\n"
+            "Set the MPV_PATH environment variable, or install mpv:\\n"
+            "  brew install mpv\" "
+            "buttons {\"OK\"} default button \"OK\" "
+            "with icon stop",
+            NULL
+        };
+        pid_t pid = fork();
+        if (pid == 0) {
+            execv("/usr/bin/osascript", (char *const *)argv);
+            _exit(1);
+        }
+
         return 1;
     }
 
