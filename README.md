@@ -36,6 +36,8 @@ make install
 > Alternatively, `make install` strips the quarantine flag automatically, so Gatekeeper
 > won't prompt on subsequent launches.
 
+> **Tested on:** macOS Tahoe 26.5 (Apple Silicon).
+
 ## Usage
 
 | Action | Command / Gesture |
