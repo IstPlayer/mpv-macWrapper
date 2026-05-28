@@ -9,8 +9,8 @@ THUMBFAST_SYM := /usr/local/mpv
 CC            := clang
 CFLAGS        := -O2 -mmacosx-version-min=12.0
 
-# Detect mpv version for Info.plist
-MPV_BIN       := /opt/homebrew/bin/mpv
+# Detect mpv version for Info.plist (use MPV_PATH override if set)
+MPV_BIN       := $(or $(MPV_PATH),$(shell command -v mpv 2>/dev/null || echo mpv))
 MPV_VERSION   := $(shell $(MPV_BIN) --version 2>/dev/null | head -1 | awk '{print $$2}' || echo "0.0.0")
 
 .PHONY: all build install uninstall clean icon test help
@@ -33,11 +33,14 @@ $(BUNDLE): src/launcher.c Info.plist icon/mpv.icns
 	plutil -lint $(BUNDLE)/Contents/Info.plist
 	@echo "✅ $(BUNDLE) built ($(MPV_VERSION))"
 
-# ── Icon generation ──────────────────────────────────────
+# ── Icon (pre-generated; regenerate only on demand) ─────
 
-icon/mpv.icns: scripts/generate-icon.py
-	@echo "🎨 Generating icon..."
+icon/mpv.icns:
+	@echo "🎨 Regenerating icon..."
 	python3 scripts/generate-icon.py
+
+.PHONY: icon
+icon: icon/mpv.icns
 
 # ── Install / uninstall ─────────────────────────────────
 
@@ -45,6 +48,7 @@ install: build
 	@echo "📦 Installing to $(INSTALL_DIR)/$(BUNDLE)..."
 	sudo rm -rf "$(INSTALL_DIR)/$(BUNDLE)"
 	sudo cp -R $(BUNDLE) "$(INSTALL_DIR)/"
+	sudo xattr -dr com.apple.quarantine "$(INSTALL_DIR)/$(BUNDLE)" 2>/dev/null || true
 	sudo mkdir -p /usr/local
 	sudo ln -sf "$(INSTALL_DIR)/$(BUNDLE)/Contents/MacOS/$(APP_NAME)" $(THUMBFAST_SYM)
 	@echo "✅ Installed. Run: killall Dock   (to refresh icon cache)"
@@ -59,12 +63,12 @@ uninstall:
 
 test: build
 	@echo "🧪 Testing..."
-	@echo -n "  Launcher binary: "
+	@printf "  Launcher binary: "
 	@./$(BUNDLE)/Contents/MacOS/$(APP_NAME) --version | head -1
-	@echo -n "  open -a (no args): "
+	@printf "  open -a (no args): "
 	@open ./$(BUNDLE) 2>/dev/null && sleep 2; \
 		pgrep -q $(APP_NAME) && echo "OK" && pkill $(APP_NAME) || echo "FAIL"
-	@echo -n "  open -a (with file): "
+	@printf "  open -a (with file): "
 	@touch /tmp/_mpv_test.mkv
 	@open -a $(APP_NAME) /tmp/_mpv_test.mkv 2>/dev/null && sleep 2; \
 		pgrep -q $(APP_NAME) && echo "OK" && pkill $(APP_NAME) || echo "FAIL"
@@ -74,7 +78,7 @@ test: build
 
 clean:
 	rm -rf $(BUNDLE)
-	rm -rf icon/mpv.icns icon/mpv-icon-1024.png
+	rm -rf icon/mpv-icon-1024.png icon/mpv-icon-2048.png icon/mpv.svg
 
 # ── Help ────────────────────────────────────────────────
 
@@ -87,4 +91,8 @@ help:
 	@echo "  make uninstall  Remove from /Applications/"
 	@echo "  make test     Build and run smoke tests"
 	@echo "  make clean    Remove build artifacts"
+	@echo "  make icon     Regenerate icon from upstream PNG"
 	@echo "  make help     Show this message"
+	@echo ""
+	@echo "Environment:"
+	@echo "  MPV_PATH   Override path to mpv binary (default: auto-detect)"

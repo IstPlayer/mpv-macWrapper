@@ -1,12 +1,11 @@
 # mpv-mac-app
 
-> Wrap your Homebrew-installed mpv as a native macOS `.app` with double-click launch, Dock pinning, and file associations.
+> Wrap your Homebrew-installed mpv as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
 
 <p align="center">
   <a href="README.zh.md">中文</a>
   &nbsp;·&nbsp;
   <img src="https://img.shields.io/badge/platform-macOS%2012%2B-blue" alt="platform">
-  <img src="https://img.shields.io/badge/mpv-v0.41.0-yellow" alt="mpv version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="license">
 </p>
 
@@ -18,7 +17,7 @@ Homebrew's mpv is a command-line binary. It can't:
 - Appear in "Open With" menus
 - Show up in Launchpad
 
-This project generates a ~130 KB `.app` bundle that solves all of the above.
+This project wraps it in a ~130 KB `.app` bundle that solves all of the above.
 
 ## Quick Start
 
@@ -27,6 +26,9 @@ git clone https://github.com/IstPlayer/mpv-mac-app.git
 cd mpv-mac-app
 make install
 ```
+
+> **macOS Gatekeeper:** the app is unsigned. Right-click → **Open** the first time you launch it, or run
+> `make install` (which strips the quarantine flag automatically).
 
 Then refresh the icon cache:
 
@@ -49,23 +51,38 @@ killall Dock
 mpv.app/
 └── Contents/
     ├── MacOS/mpv          ← native arm64 launcher (C, ~33 KB)
-    ├── Resources/mpv.icns ← app icon
+    ├── Resources/mpv.icns ← pre-generated app icon
     └── Info.plist         ← metadata + 20 format associations
 ```
 
-The launcher is a compiled Mach-O binary that calls `/opt/homebrew/bin/mpv`:
+The launcher locates `mpv` at runtime by checking, in order:
 
-- **With arguments** → passes them straight through to mpv.
+1. `$MPV_PATH` environment variable
+2. `/opt/homebrew/bin/mpv` (Apple Silicon Homebrew)
+3. `/usr/local/bin/mpv` (Intel Homebrew)
+4. `/opt/local/bin/mpv` (MacPorts)
+
+- **With arguments** → passes them through to mpv.
 - **No arguments** → launches `mpv --idle=yes --force-window=yes` (blank window, ready for drag & drop).
 
-**mpv updates require zero maintenance.** The launcher always points at the current Homebrew binary.
+**mpv updates require zero maintenance.** The launcher always resolves to the current binary on `$PATH`.
+
+### Custom mpv path
+
+```bash
+# Use a non-standard mpv installation
+MPV_PATH=/opt/custom/bin/mpv make install
+```
+
+Or set the environment variable before launching the app itself.
 
 ## Build
 
 ```bash
-make          # Build mpv.app
+make          # Build mpv.app (icon is pre-generated)
 make test     # Build + smoke tests
-make clean    # Remove artifacts
+make clean    # Remove build artifacts
+make icon     # Regenerate the icon from upstream PNG
 ```
 
 ## Dependencies
@@ -74,8 +91,9 @@ make clean    # Remove artifacts
 |---|---|---|
 | mpv | The player itself | `brew install mpv` |
 | clang | Compile the launcher | `xcode-select --install` |
-| Python 3 + Pillow | Icon generation | `pip install Pillow` |
 | sips / iconutil | Icon packaging | Built into macOS |
+
+> Building the icon from scratch (optional — it's pre-generated) requires Python 3 + Pillow.
 
 ## Configuration
 
@@ -91,7 +109,7 @@ The launcher itself has zero configuration.
 
 ### Do I need to reinstall after `brew upgrade mpv`?
 
-**No.** The launcher calls `/opt/homebrew/bin/mpv`, so a Homebrew upgrade is picked up automatically.
+**No.** The launcher resolves `mpv` at runtime — a Homebrew upgrade is picked up automatically.
 
 ### thumbfast spams "client script write failed"?
 
