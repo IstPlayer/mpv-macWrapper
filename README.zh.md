@@ -1,6 +1,6 @@
 # mpv-macWrapper
 
-> 将 Homebrew 安装的 mpv 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
+> 将 Homebrew 或其他工具安装的 **mpv CLI** 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
 
 <p align="center">
   <a href="README.md">English</a>
@@ -11,13 +11,13 @@
 
 ## 为什么需要？
 
-Homebrew 安装的 mpv 是命令行工具，无法：
+Homebrew 或其他工具安装的 mpv 是命令行工具，无法：
 - 在 Finder 中双击启动
 - 拖到 Dock 固定
 - 右键视频文件 → 打开方式 → mpv
 - 从 Launchpad 启动
 
-本项目提供预构建、开箱即用的 `.app` bundle（约 1.2 MB），解决以上所有问题。
+本项目构建约 1.2 MB 的 `.app` bundle，解决以上所有问题。
 
 ## 快速开始
 
@@ -29,7 +29,10 @@ make install
 
 > **计划中：** Homebrew Formula（`brew install mpv-macWrapper`）。见 [TODO.md](TODO.md)。
 
-> **macOS Gatekeeper：** 应用未签名，首次启动需**右键 → 打开**。
+> **macOS Gatekeeper：** 应用未签名，首次启动时 macOS 会弹出
+> _"无法打开，因为无法验证开发者"_ 的提示。
+> 在 Finder 中**右键**（或 Control-点击）mpv.app → **打开**，确认即可。
+> 也可以直接使用 `make install`，它会自动移除隔离标记，后续启动不再提示。
 
 ## 使用
 
@@ -67,10 +70,21 @@ mpv.app/
 mpv 行为完全由 `~/.config/mpv/` 控制：
 
 - `mpv.conf` — 主配置
-- `scripts/` — Lua 脚本 (ModernZ, thumbfast, playlistmanager, …)
+- `scripts/` — 脚本（ModernZ、thumbfast、playlistmanager …）
 - `script-opts/` — 脚本配置
 
 启动器本身零配置。
+
+## 依赖
+
+| 依赖 | 用途 | 安装 |
+|---|---|---|
+| mpv | 播放器本体 | `brew install mpv` |
+| clang | 编译启动器 | `xcode-select --install` |
+| sips / iconutil | 图标打包（已预生成） | macOS 内置 |
+
+> 如需重新生成图标（可选，已预生成），额外需要 Python 3 + [Pillow](https://python-pillow.org/)：
+> `pip install Pillow`，然后 `make icon`。
 
 ## 开发
 
@@ -110,6 +124,17 @@ mpv_path=/opt/homebrew/bin/mpv
 ```bash
 killall Dock
 ```
+
+### 如何卸载？
+
+```bash
+make uninstall
+```
+
+## TODO
+
+- [ ] 提交至 [Homebrew core](https://github.com/Homebrew/homebrew-core) 作为 Formula。
+      详见 [TODO.md](TODO.md)。
 
 ## License
 

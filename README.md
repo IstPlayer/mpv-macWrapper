@@ -1,6 +1,6 @@
 # mpv-macWrapper
 
-> Wrap your Homebrew-installed mpv as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
+> Wrap your Homebrew (or otherwise installed) **mpv CLI** as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
 
 <p align="center">
   <a href="README.zh.md">中文</a>
@@ -11,13 +11,14 @@
 
 ## Why?
 
-Homebrew's mpv is a command-line binary. It can't:
+Homebrew and other package managers install mpv as a command-line binary. It can't:
+
 - Launch from Finder with a double-click
 - Stay in the Dock
 - Appear in "Open With" menus
 - Show up in Launchpad
 
-This project provides a pre-built, ready-to-use `.app` bundle (~1.2 MB) that solves all of the above.
+This project builds a ~1.2 MB `.app` bundle that solves all of the above.
 
 ## Quick Start
 
@@ -29,7 +30,11 @@ make install
 
 > **Planned:** Homebrew Formula (`brew install mpv-macWrapper`). See [TODO.md](TODO.md).
 
-> **macOS Gatekeeper:** the app is unsigned. Right-click → **Open** the first time you launch it.
+> **macOS Gatekeeper:** the app is unsigned. On first launch, macOS will block it with a
+> _"cannot be opened because it is from an unidentified developer"_ dialog.
+> **Right-click** (or Control-click) the app in Finder and choose **Open**, then confirm.
+> Alternatively, `make install` strips the quarantine flag automatically, so Gatekeeper
+> won't prompt on subsequent launches.
 
 ## Usage
 
@@ -60,7 +65,8 @@ The launcher locates `mpv` at runtime by checking, in order:
 - **With arguments** → passes them through to mpv.
 - **No arguments** → launches `mpv --idle=yes --force-window=yes` (blank window, ready for drag & drop).
 
-**mpv updates require zero maintenance.** The launcher always resolves to the current binary on `$PATH`.
+**mpv updates require zero maintenance.** The launcher always resolves to the current
+binary on your system.
 
 ## Configuration
 
@@ -72,9 +78,20 @@ All mpv behaviour is controlled by your `~/.config/mpv/`:
 
 The launcher itself has zero configuration.
 
+## Dependencies
+
+| Dependency | Why | Install |
+|---|---|---|
+| mpv | The player itself | `brew install mpv` |
+| clang | Compile the launcher | `xcode-select --install` |
+| sips / iconutil | Icon packaging (pre-generated) | Built into macOS |
+
+> Building the icon from scratch is optional (it's pre-generated). It requires Python 3
+> + [Pillow](https://python-pillow.org/): `pip install Pillow`, then `make icon`.
+
 ## Development
 
-The `.app` is committed pre-built. To rebuild (e.g. after modifying the launcher):
+The `.app` is pre-built and committed. To rebuild (e.g. after modifying the launcher):
 
 ```bash
 make          # Build mpv.app
@@ -110,6 +127,17 @@ mpv_path=/opt/homebrew/bin/mpv
 ```bash
 killall Dock
 ```
+
+### How do I uninstall?
+
+```bash
+make uninstall
+```
+
+## TODO
+
+- [ ] Submit to [Homebrew core](https://github.com/Homebrew/homebrew-core) as a Formula.
+      See [TODO.md](TODO.md) for details.
 
 ## License
 
