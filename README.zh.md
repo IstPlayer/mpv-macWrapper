@@ -10,6 +10,10 @@
   <img src="https://img.shields.io/badge/license-GPLv2%2B-green" alt="license">
 </p>
 
+<p align="center">
+  <img src="icon/demo.png" alt="mpv-macWrapper 演示" width="600">
+</p>
+
 ## 为什么需要？
 
 [Homebrew](https://brew.sh/) 或其他工具安装/编译的 **mpv** 是命令行工具，无法:

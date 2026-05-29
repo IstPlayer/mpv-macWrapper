@@ -10,6 +10,10 @@
   <img src="https://img.shields.io/badge/license-GPLv2%2B-green" alt="license">
 </p>
 
+<p align="center">
+  <img src="icon/demo.png" alt="mpv-macWrapper demo" width="600">
+</p>
+
 ## Why?
 
 [Homebrew](https://brew.sh/) and other package managers install/compile **mpv** as a command-line binary. It can't:
