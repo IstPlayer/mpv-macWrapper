@@ -20,8 +20,23 @@ jobs:
       - name: Rename DMG for release
         run: mv mpv-*.dmg mpv.dmg
 
+      - name: Extract changelog
+        id: changelog
+        run: |
+          TAG="${{ github.ref_name }}"
+          VER="${TAG#v}"
+          awk -v ver="$VER" '
+            $0 ~ "^## v" ver " " { found=1; next }
+            found && /^## v/ { exit }
+            found { print }
+          ' CHANGELOG.md > /tmp/release-body.md
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          cat /tmp/release-body.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
           files: mpv.dmg
+          body_path: /tmp/release-body.md
           generate_release_notes: true
