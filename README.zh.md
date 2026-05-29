@@ -23,17 +23,9 @@
 ## 快速开始
 
 ```bash
-brew install IstPlayer/tap/mpv-macwrapper
-```
-
-或分两步：
-
-```bash
 brew tap IstPlayer/tap
-brew install mpv-macwrapper
+brew install --cask mpv-macwrapper
 ```
-
-根据提示将 mpv.app 复制到 `/Applications/`。
 
 或下载[最新 DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)，
 双击打开，将 `mpv.app` 拖入 `/Applications/`。
@@ -124,9 +116,8 @@ MPV_PATH=/opt/custom/bin/mpv make
 ### 如何卸载？
 
 ```bash
-brew uninstall mpv-macwrapper
+brew uninstall --cask mpv-macwrapper
 brew untap IstPlayer/tap      # 可选：移除 tap
-rm ~/Applications/mpv.app     # 清理软链接
 ```
 
 若从源码安装：`make uninstall`。

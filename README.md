@@ -24,17 +24,9 @@ This project builds a ~1.2 MB `.app` bundle (wrapper v1.0.0, tested with mpv v0.
 ## Quick Start
 
 ```bash
-brew install IstPlayer/tap/mpv-macwrapper
-```
-
-Or in two steps:
-
-```bash
 brew tap IstPlayer/tap
-brew install mpv-macwrapper
+brew install --cask mpv-macwrapper
 ```
-
-Then copy the app to `/Applications/` as prompted.
 
 Or download the [latest DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)
 and drag `mpv.app` into `/Applications/`.
@@ -129,9 +121,8 @@ MPV_PATH=/opt/custom/bin/mpv make
 ### How do I uninstall?
 
 ```bash
-brew uninstall mpv-macwrapper
-brew untap IstPlayer/tap      # optional: remove the tap
-rm ~/Applications/mpv.app     # clean up the symlink
+brew uninstall --cask mpv-macwrapper
+brew untap IstPlayer/tap  # optional: remove the tap
 ```
 
 If installed from source: `make uninstall`.
