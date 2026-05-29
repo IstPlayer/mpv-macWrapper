@@ -135,11 +135,6 @@ brew untap IstPlayer/tap  # optional: remove the tap
 
 If installed from source: `make uninstall`.
 
-## TODO
-
-- [ ] Submit to [Homebrew core](https://github.com/Homebrew/homebrew-core) as a Formula.
-      Currently available via custom tap: `brew tap IstPlayer/tap && brew install mpv-macwrapper`.
-
 ## License
 
 GPLv2+ © 2026 IstPlayer.
