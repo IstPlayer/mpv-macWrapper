@@ -125,7 +125,8 @@ MPV_PATH=/opt/custom/bin/mpv make
 
 ```bash
 brew uninstall mpv-macwrapper
-brew untap IstPlayer/tap  # 可选：移除 tap
+brew untap IstPlayer/tap      # 可选：移除 tap
+rm ~/Applications/mpv.app     # 清理软链接
 ```
 
 若从源码安装：`make uninstall`。

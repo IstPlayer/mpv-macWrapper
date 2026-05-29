@@ -130,7 +130,8 @@ MPV_PATH=/opt/custom/bin/mpv make
 
 ```bash
 brew uninstall mpv-macwrapper
-brew untap IstPlayer/tap  # optional: remove the tap
+brew untap IstPlayer/tap      # optional: remove the tap
+rm ~/Applications/mpv.app     # clean up the symlink
 ```
 
 If installed from source: `make uninstall`.
