@@ -10,7 +10,7 @@ CFLAGS        := -O2 -mmacosx-version-min=12.0
 
 # Detect mpv path for test / display (use MPV_PATH override if set)
 MPV_BIN       := $(or $(MPV_PATH),$(shell command -v mpv 2>/dev/null || echo mpv))
-VERSION       := 1.1.5
+VERSION       := 1.1.6
 MPV_VER       := $(shell $(MPV_BIN) --version 2>/dev/null | head -1 | awk '{print $$2}' || echo unknown)
 
 .PHONY: all build install uninstall clean icon test help
