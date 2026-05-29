@@ -23,6 +23,12 @@
 ## 快速开始
 
 ```bash
+brew install IstPlayer/tap/mpv-macwrapper
+```
+
+或分两步：
+
+```bash
 brew tap IstPlayer/tap
 brew install mpv-macwrapper
 ```
@@ -118,7 +124,8 @@ MPV_PATH=/opt/custom/bin/mpv make
 ### 如何卸载？
 
 ```bash
-make uninstall
+brew uninstall mpv-macwrapper
+brew untap IstPlayer/tap  # 可选：移除 tap
 ```
 
 ## TODO
