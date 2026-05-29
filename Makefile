@@ -46,14 +46,14 @@ icon: icon/mpv.icns
 
 install: build
 	@echo "📦 Installing to $(INSTALL_DIR)/$(BUNDLE)..."
-	sudo rm -rf "$(INSTALL_DIR)/$(BUNDLE)"
-	sudo cp -R $(BUNDLE) "$(INSTALL_DIR)/"
-	sudo xattr -dr com.apple.quarantine "$(INSTALL_DIR)/$(BUNDLE)" 2>/dev/null || true
+	rm -rf "$(INSTALL_DIR)/$(BUNDLE)"
+	cp -R $(BUNDLE) "$(INSTALL_DIR)/"
+	xattr -dr com.apple.quarantine "$(INSTALL_DIR)/$(BUNDLE)" 2>/dev/null || true
 	@echo "✅ Installed. Run: killall Dock   (to refresh icon cache)"
 
 uninstall:
 	@echo "🗑  Removing $(INSTALL_DIR)/$(BUNDLE)..."
-	sudo rm -rf "$(INSTALL_DIR)/$(BUNDLE)"
+	rm -rf "$(INSTALL_DIR)/$(BUNDLE)"
 	@echo "✅ Uninstalled."
 
 # ── Test ────────────────────────────────────────────────
