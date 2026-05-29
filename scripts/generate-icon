@@ -1,5 +1,5 @@
 #!/bin/bash
-# generate-icon — download official mpv PNG and generate .icns
+# generate-icon — download official mpv SVG and generate .icns
 # Requires: macOS built-in tools only (curl, sips, iconutil).
 set -euo pipefail
 
@@ -7,31 +7,31 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 OUTPUT_DIR="$SCRIPT_DIR/../icon"
 mkdir -p "$OUTPUT_DIR"
 
-PNG_128="$OUTPUT_DIR/mpv-icon-128.png"
-PNG_1024="$OUTPUT_DIR/mpv-icon-1024.png"
+SVG="$OUTPUT_DIR/mpv.svg"
+PNG="$OUTPUT_DIR/mpv-icon-1024.png"
 ICNS="$OUTPUT_DIR/mpv.icns"
-URL="https://raw.githubusercontent.com/mpv-player/mpv/master/etc/mpv-icon-8bit-128x128.png"
+URL="https://raw.githubusercontent.com/mpv-player/mpv/master/etc/mpv.svg"
 
-echo "→ Downloading official mpv icon..."
-curl -sL "$URL" -o "$PNG_128"
+echo "→ Downloading official mpv SVG..."
+curl -sL "$URL" -o "$SVG"
 
-echo "→ Upscaling to 1024×1024..."
-sips -z 1024 1024 "$PNG_128" --out "$PNG_1024" >/dev/null
+echo "→ Rendering 1024×1024 PNG..."
+sips -s format png -z 1024 1024 "$SVG" --out "$PNG" >/dev/null
 
 echo "→ Packing .icns..."
 ICONSET="$(mktemp -d)/mpv.iconset"
 mkdir -p "$ICONSET"
 
-sips -z  16  16 "$PNG_1024" --out "$ICONSET/icon_16x16.png"       >/dev/null
-sips -z  32  32 "$PNG_1024" --out "$ICONSET/icon_16x16@2x.png"    >/dev/null
-sips -z  32  32 "$PNG_1024" --out "$ICONSET/icon_32x32.png"       >/dev/null
-sips -z  64  64 "$PNG_1024" --out "$ICONSET/icon_32x32@2x.png"    >/dev/null
-sips -z 128 128 "$PNG_1024" --out "$ICONSET/icon_128x128.png"     >/dev/null
-sips -z 256 256 "$PNG_1024" --out "$ICONSET/icon_128x128@2x.png"  >/dev/null
-sips -z 256 256 "$PNG_1024" --out "$ICONSET/icon_256x256.png"     >/dev/null
-sips -z 512 512 "$PNG_1024" --out "$ICONSET/icon_256x256@2x.png"  >/dev/null
-sips -z 512 512 "$PNG_1024" --out "$ICONSET/icon_512x512.png"     >/dev/null
-cp "$PNG_1024" "$ICONSET/icon_512x512@2x.png"
+sips -z  16  16 "$PNG" --out "$ICONSET/icon_16x16.png"       >/dev/null
+sips -z  32  32 "$PNG" --out "$ICONSET/icon_16x16@2x.png"    >/dev/null
+sips -z  32  32 "$PNG" --out "$ICONSET/icon_32x32.png"       >/dev/null
+sips -z  64  64 "$PNG" --out "$ICONSET/icon_32x32@2x.png"    >/dev/null
+sips -z 128 128 "$PNG" --out "$ICONSET/icon_128x128.png"     >/dev/null
+sips -z 256 256 "$PNG" --out "$ICONSET/icon_128x128@2x.png"  >/dev/null
+sips -z 256 256 "$PNG" --out "$ICONSET/icon_256x256.png"     >/dev/null
+sips -z 512 512 "$PNG" --out "$ICONSET/icon_256x256@2x.png"  >/dev/null
+sips -z 512 512 "$PNG" --out "$ICONSET/icon_512x512.png"     >/dev/null
+cp "$PNG" "$ICONSET/icon_512x512@2x.png"
 
 iconutil -c icns "$ICONSET" -o "$ICNS"
 rm -rf "$(dirname "$ICONSET")"
