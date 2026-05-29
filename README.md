@@ -65,10 +65,14 @@ mpv.app/
 
 The launcher locates `mpv` at runtime by checking, in order:
 
-1. `$MPV_PATH` environment variable
-2. `/opt/homebrew/bin/mpv` (Apple Silicon [Homebrew](https://brew.sh/))
-3. `/usr/local/bin/mpv` (Intel [Homebrew](https://brew.sh/))
-4. `/opt/local/bin/mpv` (MacPorts)
+1. `~/.config/mpv-macWrapper/path.conf` — saved from file picker
+2. `$MPV_PATH` environment variable
+3. `/opt/homebrew/bin/mpv` (Apple Silicon [Homebrew](https://brew.sh/))
+4. `/usr/local/bin/mpv` (Intel [Homebrew](https://brew.sh/))
+5. `/opt/local/bin/mpv` (MacPorts)
+6. `$PATH` — searches every directory on your PATH for `mpv`
+
+7. Native file picker — manual selection → saved to `path.conf`
 
 - **With arguments** → passes them through to mpv.
 - **No arguments** → launches `mpv --idle=yes --force-window=yes` (blank window, ready for drag & drop).

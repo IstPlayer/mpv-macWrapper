@@ -62,10 +62,14 @@ mpv.app/
 
 启动器按以下顺序查找 `mpv`:
 
-1. `$MPV_PATH` 环境变量
-2. `/opt/homebrew/bin/mpv` (Apple Silicon [Homebrew](https://brew.sh/))
-3. `/usr/local/bin/mpv` (Intel [Homebrew](https://brew.sh/))
-4. `/opt/local/bin/mpv` (MacPorts)
+1. `~/.config/mpv-macWrapper/path.conf` — 文件选择器保存的路径
+2. `$MPV_PATH` 环境变量
+3. `/opt/homebrew/bin/mpv` (Apple Silicon [Homebrew](https://brew.sh/))
+4. `/usr/local/bin/mpv` (Intel [Homebrew](https://brew.sh/))
+5. `/opt/local/bin/mpv` (MacPorts)
+6. `$PATH` — 逐目录搜索 `mpv`
+
+7. 原生文件选择器 — 手动定位 → 保存至 `path.conf`
 
 - **有参数** → 透传给 mpv
 - **无参数** → `mpv --idle=yes --force-window=yes` (空白窗口等待拖放)
