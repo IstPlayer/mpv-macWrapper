@@ -89,8 +89,7 @@ static char *file_picker(void) {
     const char *script =
         "set mpvPath to POSIX path of (choose file "
         "  with prompt \"Please locate the mpv binary:\" "
-        "  default location (POSIX file \"/opt/homebrew/bin\") "
-        "  of type {\"public.unix-executable\"})\n"
+        "  default location (POSIX file \"/opt/homebrew/bin\"))\n"
         "return mpvPath";
 
     FILE *fp = popen("/usr/bin/osascript -e 2>/dev/null", "w");
