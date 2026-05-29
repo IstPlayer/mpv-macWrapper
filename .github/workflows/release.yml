@@ -11,10 +11,8 @@ permissions:
 jobs:
   release:
     runs-on: macos-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Build and package
         run: make release
@@ -23,7 +21,7 @@ jobs:
         run: mv mpv-*.dmg mpv.dmg
 
       - name: Create Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: mpv.dmg
           generate_release_notes: true
