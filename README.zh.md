@@ -101,6 +101,7 @@ mpv 行为完全由 `~/.config/mpv/` 控制:
 | sips / iconutil | 图标打包（已预生成） | macOS 内置 |
 
 > 如需重新生成图标（可选，已预生成），只需 `curl`、`sips`、`iconutil`——均为 macOS 内置。运行 `make icon`。
+> 要使用自定义图标，修改 `scripts/generate-icon` 中的 `URL` 变量指向你自己的 SVG 即可。
 
 ## 开发
 

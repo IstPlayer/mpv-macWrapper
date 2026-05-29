@@ -106,6 +106,8 @@ The launcher itself has zero configuration.
 
 > Regenerating the icon from scratch is optional (it's pre-generated). It only requires
 > `curl`, `sips`, and `iconutil` — all built into macOS.  Run `make icon`.
+> To use a custom icon, edit the `URL` variable in `scripts/generate-icon` to point
+> to your own SVG before running.
 
 ## Development
 
