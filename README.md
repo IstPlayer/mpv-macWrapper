@@ -24,8 +24,7 @@ This project builds a ~1.2 MB `.app` bundle (wrapper v1.0.0, tested with mpv v0.
 ## Quick Start
 
 ```bash
-brew tap IstPlayer/tap
-brew install --cask mpv-macwrapper
+brew install --cask IstPlayer/tap/mpv-macwrapper
 ```
 
 Or download the [latest DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)

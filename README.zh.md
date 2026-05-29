@@ -23,8 +23,7 @@
 ## 快速开始
 
 ```bash
-brew tap IstPlayer/tap
-brew install --cask mpv-macwrapper
+brew install --cask IstPlayer/tap/mpv-macwrapper
 ```
 
 或下载[最新 DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)，
