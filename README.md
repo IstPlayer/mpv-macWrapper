@@ -94,8 +94,8 @@ The launcher itself has zero configuration.
 | clang | Compile the launcher | `xcode-select --install` |
 | sips / iconutil | Icon packaging (pre-generated) | Built into macOS |
 
-> Building the icon from scratch is optional (it's pre-generated). It requires Python 3
-> + [Pillow](https://python-pillow.org/): `pip install Pillow`, then `make icon`.
+> Regenerating the icon from scratch is optional (it's pre-generated). It only requires
+> `curl`, `sips`, and `iconutil` — all built into macOS.  Run `make icon`.
 
 ## Development
 

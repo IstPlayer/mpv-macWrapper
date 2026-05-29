@@ -88,10 +88,9 @@ mpv 行为完全由 `~/.config/mpv/` 控制:
 |---|---|---|
 | mpv | 播放器本体 | `brew install mpv` |
 | clang | 编译启动器 | `xcode-select --install` |
-| sips / iconutil | 图标打包 (已预生成)  | macOS 内置 |
+| sips / iconutil | 图标打包（已预生成） | macOS 内置 |
 
-> 如需重新生成图标 (可选，已预生成) ，额外需要 Python 3 + [Pillow](https://python-pillow.org/):
-> `pip install Pillow`，然后 `make icon`。
+> 如需重新生成图标（可选，已预生成），只需 `curl`、`sips`、`iconutil`——均为 macOS 内置。运行 `make icon`。
 
 ## 开发
 

@@ -37,7 +37,7 @@ $(BUNDLE): src/launcher.c src/Info.plist icon/mpv.icns
 
 icon/mpv.icns:
 	@echo "🎨 Regenerating icon..."
-	python3 scripts/generate-icon.py
+	bash scripts/generate-icon
 
 .PHONY: icon
 icon: icon/mpv.icns
