@@ -30,6 +30,12 @@
 brew install --cask IstPlayer/tap/mpv-macwrapper
 ```
 
+不使用 Homebrew：
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/IstPlayer/mpv-macWrapper/main/scripts/install.sh)"
+```
+
 或下载[最新 DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)，
 双击打开，将 `mpv.app` 拖入 `/Applications/`。
 
