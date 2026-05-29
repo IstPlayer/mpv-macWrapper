@@ -115,6 +115,34 @@ static char *file_picker(void) {
     return line;
 }
 
+/* Search $PATH for an executable named "mpv".  Returns a malloc'd string,
+ * or NULL if not found. */
+static char *search_path(void) {
+    const char *path_env = getenv("PATH");
+    if (!path_env) return NULL;
+
+    char *dup = strdup(path_env);
+    if (!dup) return NULL;
+
+    char *saveptr;
+    char *dir = strtok_r(dup, ":", &saveptr);
+    while (dir) {
+        size_t len = strlen(dir) + 5;  /* "/mpv" + null */
+        char *candidate = malloc(len);
+        if (candidate) {
+            snprintf(candidate, len, "%s/mpv", dir);
+            if (access(candidate, X_OK) == 0) {
+                free(dup);
+                return candidate;
+            }
+            free(candidate);
+        }
+        dir = strtok_r(NULL, ":", &saveptr);
+    }
+    free(dup);
+    return NULL;
+}
+
 /* ── mpv location ─────────────────────────────────────── */
 
 static const char *CANDIDATES[] = {
@@ -129,7 +157,8 @@ static const char *CANDIDATES[] = {
  *   1. saved config  (~/.config/mpv-macWrapper/path.conf)
  *   2. $MPV_PATH
  *   3. built-in candidate paths
- *   4. file-picker dialog → save → return
+ *   4. $PATH search for "mpv"
+ *   5. file-picker dialog → save → return
  */
 static const char *resolve_mpv(void) {
     /* 1. saved config */
@@ -147,7 +176,11 @@ static const char *resolve_mpv(void) {
             return strdup(CANDIDATES[i]);
     }
 
-    /* 4. file picker */
+    /* 4. $PATH search */
+    char *found = search_path();
+    if (found) return found;
+
+    /* 5. file picker */
     char *picked = file_picker();
     if (picked && access(picked, X_OK) == 0) {
         save_path(picked);
