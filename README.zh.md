@@ -1,4 +1,4 @@
-# mpv-macWrapper v1.1.5
+# mpv-macWrapper
 
 > 将 [Homebrew](https://brew.sh/) 或其他工具安装的 **mpv CLI** 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
 
