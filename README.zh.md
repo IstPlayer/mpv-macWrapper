@@ -1,4 +1,4 @@
-# mpv-macWrapper v1.0.0
+# mpv-macWrapper v1.1.0
 
 > 将 [Homebrew](https://brew.sh/) 或其他工具安装的 **mpv CLI** 包装为 macOS 原生 `.app` — 双击启动、Dock 驻留、右键文件打开。
 
@@ -6,7 +6,7 @@
   <a href="README.md">English</a>
   &nbsp;·&nbsp;
   <img src="https://img.shields.io/badge/platform-macOS%2012%2B-blue" alt="platform">
-  <img src="https://img.shields.io/badge/version-1.0.0-yellow" alt="version">
+  <img src="https://img.shields.io/badge/version-1.1.0-yellow" alt="version">
   <img src="https://img.shields.io/badge/license-GPLv2%2B-green" alt="license">
 </p>
 

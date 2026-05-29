@@ -1,4 +1,4 @@
-# mpv-macWrapper v1.0.0
+# mpv-macWrapper v1.1.0
 
 > Wrap your [Homebrew](https://brew.sh/) (or otherwise installed) **mpv CLI** as a native macOS `.app` — double-click to launch, pin to Dock, right-click files to open.
 
@@ -6,7 +6,7 @@
   <a href="README.zh.md">中文</a>
   &nbsp;·&nbsp;
   <img src="https://img.shields.io/badge/platform-macOS%2012%2B-blue" alt="platform">
-  <img src="https://img.shields.io/badge/version-1.0.0-yellow" alt="version">
+  <img src="https://img.shields.io/badge/version-1.1.0-yellow" alt="version">
   <img src="https://img.shields.io/badge/license-GPLv2%2B-green" alt="license">
 </p>
 
