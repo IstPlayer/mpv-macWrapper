@@ -1,5 +1,5 @@
 /*
- * mpv-macWrapper v1.1.0 — macOS .app bundle launcher for mpv
+ * mpv-macWrapper v1.1.5 — macOS .app bundle launcher for mpv
  *
  * Locates mpv via (in priority order):
  *   1. ~/.config/mpv-macWrapper/path.conf  — saved from previous manual selection
