@@ -129,7 +129,8 @@ make uninstall
 
 ## TODO
 
-- [ ] Submit to [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) — `brew install --cask mpv-macWrapper`.
+- [ ] Submit to [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) — `brew install --cask mpv-macwrapper`.
+      Requires project notability (≥90 forks, ≥90 watchers, or ≥225 stars).
 
 ## License
 
