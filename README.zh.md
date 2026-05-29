@@ -22,16 +22,15 @@
 
 ## 快速开始
 
-[下载最新 DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)，
-双击打开，将 `mpv.app` 拖入 `/Applications/`。
-
-或从源码构建：
-
 ```bash
-git clone https://github.com/IstPlayer/mpv-macWrapper.git
-cd mpv-macWrapper
-make install
+brew tap IstPlayer/tap
+brew install mpv-macwrapper
 ```
+
+根据提示将 mpv.app 复制到 `/Applications/`。
+
+或下载[最新 DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)，
+双击打开，将 `mpv.app` 拖入 `/Applications/`。
 
 > **macOS Gatekeeper: ** 应用未签名，首次启动时 macOS 会弹出
 > _"无法打开，因为无法验证开发者"_ 的提示。
@@ -124,8 +123,8 @@ make uninstall
 
 ## TODO
 
-- [ ] 提交至 [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) — `brew install --cask mpv-macwrapper`。
-      需要项目达到一定知名度（≥90 forks / ≥90 watchers / ≥225 stars）。
+- [ ] 提交至 [Homebrew core](https://github.com/Homebrew/homebrew-core) 作为 Formula。
+      目前已可通过自定义 tap 安装：`brew tap IstPlayer/tap && brew install mpv-macwrapper`。
 
 ## License
 

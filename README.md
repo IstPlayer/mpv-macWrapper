@@ -23,16 +23,15 @@ This project builds a ~1.2 MB `.app` bundle (wrapper v1.0.0, tested with mpv v0.
 
 ## Quick Start
 
-[Download the latest DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest),
-open it, and drag `mpv.app` into `/Applications/`.
-
-Or build from source:
-
 ```bash
-git clone https://github.com/IstPlayer/mpv-macWrapper.git
-cd mpv-macWrapper
-make install
+brew tap IstPlayer/tap
+brew install mpv-macwrapper
 ```
+
+Then copy the app to `/Applications/` as prompted.
+
+Or download the [latest DMG](https://github.com/IstPlayer/mpv-macWrapper/releases/latest)
+and drag `mpv.app` into `/Applications/`.
 
 > **macOS Gatekeeper:** the app is unsigned. On first launch, macOS will block it with a
 > _"cannot be opened because it is from an unidentified developer"_ dialog.
@@ -129,8 +128,8 @@ make uninstall
 
 ## TODO
 
-- [ ] Submit to [Homebrew Cask](https://github.com/Homebrew/homebrew-cask) — `brew install --cask mpv-macwrapper`.
-      Requires project notability (≥90 forks, ≥90 watchers, or ≥225 stars).
+- [ ] Submit to [Homebrew core](https://github.com/Homebrew/homebrew-core) as a Formula.
+      Currently available via custom tap: `brew tap IstPlayer/tap && brew install mpv-macwrapper`.
 
 ## License
 
