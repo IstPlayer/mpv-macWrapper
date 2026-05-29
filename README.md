@@ -133,6 +133,8 @@ brew uninstall mpv-macwrapper
 brew untap IstPlayer/tap  # optional: remove the tap
 ```
 
+If installed from source: `make uninstall`.
+
 ## TODO
 
 - [ ] Submit to [Homebrew core](https://github.com/Homebrew/homebrew-core) as a Formula.
